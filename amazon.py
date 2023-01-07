@@ -35,3 +35,10 @@ print(title)
 print(location)
 print(desc)
 print(url)
+
+##### for database #######
+# 1. title
+# 2. location
+# 3. desc
+
+
