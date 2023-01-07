@@ -9,6 +9,16 @@ from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 # from webdriver_manager.chrome import ChromeDriverManager
+import pymongo 
+from pymongo import MongoClient
+
+client=pymongo.MongoClient("mongodb://localhost:27017/")
+print(client)
+db=client["DiscordBot"]
+collection=db["Website"]
+id="5"
+
+
 
 url = 'https://careers.microsoft.com/students/us/en/search-results'
 
@@ -35,7 +45,8 @@ driver.execute_script("window.scrollTo(0, 200)")
 update = driver.find_element(By.CLASS_NAME, 'information')
 heading = update.find_element(By.TAG_NAME, 'a')
 # additionalInfo = update.find_elements(By.TAG_NAME, 'span')
-
+post= {"id":id,"heading":heading.text}
+collection.insert_one(post)
 print(heading.text)
 
 desc = ""

@@ -6,6 +6,16 @@ import time
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+import pymongo 
+from pymongo import MongoClient
+
+client=pymongo.MongoClient("mongodb://localhost:27017/")
+print(client)
+db=client["DiscordBot"]
+collection=db["Website"]
+id="6"
+
+
 
 url = 'https://nta.ac.in/'
 
@@ -26,7 +36,8 @@ updateSection = driver.find_element(
 
 title = updateSection.find_element(By.TAG_NAME, 'content').text
 docs = updateSection.find_element(By.TAG_NAME, 'a').get_attribute('href')
-
+post= {"id":id,"title":title}
+collection.insert_one(post)
 print(title)
 print(docs)
 

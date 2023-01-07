@@ -6,6 +6,15 @@ import time
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+import pymongo 
+from pymongo import MongoClient
+
+client=pymongo.MongoClient("mongodb://localhost:27017/")
+print(client)
+db=client["DiscordBot"]
+collection=db["Website"]
+id="8"
+
 
 url = 'https://devfolio.co/hackathons'
 
@@ -35,6 +44,8 @@ heading = Hackathons.find_element(By.TAG_NAME, 'h3').text
 # for i in info:
 #     information += i.text
 #     information += " | "
+post= {"id":id,"title":heading,"link":link}
+collection.insert_one(post)
 
 print(heading)
 print(link)

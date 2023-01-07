@@ -1,6 +1,16 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+import pymongo 
+from pymongo import MongoClient
+
+client=pymongo.MongoClient("mongodb://localhost:27017/")
+print(client)
+db=client["DiscordBot"]
+collection=db["Website"]
+id="7"
+
+
 
 url = 'https://careers.google.com/jobs/results/'
 
@@ -45,12 +55,15 @@ for qual in eligiblity:
     desc += '\n'
 
 print(desc)
+post= {"id":id,"card":card,"address":address,"desc":desc}
+collection.insert_one(post)
 
 ####### for database ##########
 # 1. card
 # 2. address
 # 3. desc
 
+prev = card + address
 
 # make a sheet jismai 1 row for google, 2nd for microsoft etc etc.
 # now take the prev data from that sheet, if prev == curr data toh don't update the data in the sheet jaha se bot msgs render karta h.

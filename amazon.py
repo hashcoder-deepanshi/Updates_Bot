@@ -2,6 +2,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 
+import pymongo
+from pymongo import MongoClient
 import time
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
@@ -11,7 +13,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 url = 'https://www.amazon.jobs/en/job_categories/software-development'
 
 # driver = webdriver.Chrome()
-
+client=pymongo.MongoClient("mongodb://localhost:27017/")
+print(client)
+db=client["DiscordBot"]
+collection=db["Website"]
 
 options = webdriver.ChromeOptions()
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
@@ -29,7 +34,9 @@ jobSection = driver.find_element(By.CLASS_NAME, 'job')
 title = jobSection.find_element(By.TAG_NAME, 'h3').text
 location = jobSection.find_element(By.TAG_NAME, 'p').text
 desc = jobSection.find_element(By.CLASS_NAME, 'description').text
-
+id="1"
+post= {"id":id,"title":title,"location":location,"description":desc}
+collection.insert_one(post)
 # message that bot will send
 print(title)
 print(location)
