@@ -27,3 +27,9 @@ location = driver.find_element(By.CLASS_NAME, '_8see').text
 
 print(title.text)
 print(location)
+
+
+####### database #####
+# 1. title
+# 2. location
+
