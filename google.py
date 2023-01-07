@@ -32,19 +32,25 @@ location = header.find_elements(By.TAG_NAME, 'span')
 address = ""
 for addr in location:
     address += addr.text
+    address += " "
 
 para = driver.find_element(By.CLASS_NAME, 'gc-card__preview')
 
 eligiblity = para.find_elements(By.TAG_NAME, 'li')
 
-prev = ""
+print(card, address)
+desc = ""
+for qual in eligiblity:
+    desc += qual.text
+    desc += '\n'
 
-if card + address != prev:
-    print(card, address)
-    for qual in eligiblity:
-        print(qual.text)
+print(desc)
 
-prev = card + address
+####### for database ##########
+# 1. card
+# 2. address
+# 3. desc
+
 
 # make a sheet jismai 1 row for google, 2nd for microsoft etc etc.
 # now take the prev data from that sheet, if prev == curr data toh don't update the data in the sheet jaha se bot msgs render karta h.
