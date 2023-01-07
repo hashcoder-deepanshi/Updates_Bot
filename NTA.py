@@ -25,7 +25,11 @@ updateSection = driver.find_element(
     By.XPATH, '//*[@id="maincont"]/div/div/div[3]/div[1]/div[2]/div[2]/marquee')
 
 title = updateSection.find_element(By.TAG_NAME, 'content').text
-docs = updateSection.find_element(By.TAG_NAME, 'a')
+docs = updateSection.find_element(By.TAG_NAME, 'a').get_attribute('href')
 
 print(title)
-print(docs.get_attribute('href'))
+print(docs)
+
+####### for database #######
+# 1. title
+# 2. docs
