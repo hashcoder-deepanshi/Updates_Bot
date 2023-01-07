@@ -22,10 +22,10 @@ WebDriverWait(driver, 10).until(
     EC.presence_of_all_elements_located((By.CLASS_NAME, "_8sel")))
 
 driver.execute_script("window.scrollTo(0, 200)")
-title = driver.find_element(By.CLASS_NAME, '_8sel')
+title = driver.find_element(By.CLASS_NAME, '_8sel').text
 location = driver.find_element(By.CLASS_NAME, '_8see').text
 
-print(title.text)
+print(title)
 print(location)
 
 
