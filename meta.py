@@ -5,6 +5,16 @@ import time
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+import pymongo 
+from pymongo import MongoClient
+
+client=pymongo.MongoClient("mongodb://localhost:27017/")
+print(client)
+db=client["DiscordBot"]
+collection=db["Website"]
+id="4"
+
+
 
 url = 'https://www.metacareers.com/jobs'
 
@@ -25,7 +35,7 @@ driver.execute_script("window.scrollTo(0, 200)")
 title = driver.find_element(By.CLASS_NAME, '_8sel').text
 location = driver.find_element(By.CLASS_NAME, '_8see').text
 
-print(title)
+print(title.text)
 print(location)
 
 

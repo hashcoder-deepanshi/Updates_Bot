@@ -1,6 +1,16 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+import pymongo 
+from pymongo import MongoClient
+
+client=pymongo.MongoClient("mongodb://localhost:27017/")
+print(client)
+db=client["DiscordBot"]
+collection=db["Website"]
+id="3"
+
+
 
 url = 'https://josaa.nic.in/'
 
@@ -12,7 +22,8 @@ driver.get(url)
 updatesSection = driver.find_element(By.CLASS_NAME, 'gen-list')
 title = updatesSection.find_element(By.TAG_NAME, 'a').text
 link = updatesSection.find_element(By.TAG_NAME, 'a').get_attribute('href')
-
+post= {"id":id,"title":title,"link":link}
+collection.insert_one(post)
 print(title)
 print(link)
 
