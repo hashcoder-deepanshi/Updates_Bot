@@ -15,3 +15,8 @@ link = updatesSection.find_element(By.TAG_NAME, 'a').get_attribute('href')
 
 print(title)
 print(link)
+
+##### for database ####
+# 1. title
+# 2. link
+
