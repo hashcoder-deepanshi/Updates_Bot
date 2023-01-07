@@ -38,5 +38,13 @@ heading = update.find_element(By.TAG_NAME, 'a')
 
 print(heading.text)
 
-# for info in additionalInfo:
-#     print(info.text)
+desc = ""
+for info in additionalInfo:
+    desc += info.text
+    desc += '\n'
+
+print(desc)
+
+####### for database ########
+# 1. heading
+# 2. desc
